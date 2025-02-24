@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <title>information</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(45deg, #120707, #0f7648);
+            min-height: 100vh;
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .profile-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+        }
+
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            overflow: hidden;
+            border: 3px solid white;
+            transform: translateZ(30px);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .profile-img:hover {
+            transform: translateZ(50px) scale(1.1);
+        }
+
+        .info-section {
+            color: white;
+            text-align: center;
+            transform: translateZ(20px);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .details {
+            display: grid;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .detail-card {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 1.5rem;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            transition: transform 0.3s;
+        }
+
+        .detail-card:hover {
+            transform: translateY(-5px) translateZ(10px);
+        }
+
+        .petal {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: rgba(255, 255, 255, 0.6);
+            clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-100vh) rotate(0deg); }
+            100% { transform: translateY(100vh) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="profile-card">
+            <div class="profile-img">
+                <!-- यहां अपनी फोटो का URL डालें -->
+                <img src="excellent-1.jpeg".jpg" alt="मेरी फोटो" style="width:100%; height:100%; object-fit: cover;">
+            </div>
+            
+            <div class="info-section">
+                <h1>Prashant Yadav</h1>
+                
+                <div class="details">
+                    <div class="detail-card">
+                        <h2>bisauli</h2>
+                        <p>Bisauli 243720</p>
+                    </div>
+                    
+                    <div class="detail-card">
+                        <h2>ℹ️ अधिक जानकारी</h2>
+                        <p>विवरण यहाँ लिखें</p>
+                        <p>ईमेल: Prashantyadavcoder@gmail.com</p>
+                        <p>फोन: +91 9720790883</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // फूल गिराने का एनिमेशन
+        function createPetal() {
+            const petal = document.createElement('div');
+            petal.classList.add('petal');
+            
+            // रैंडम पोजीशन और एनिमेशन
+            petal.style.left = Math.random() * 100 + 'vw';
+            petal.style.animationDuration = Math.random() * 3 + 2 + 's';
+            petal.style.opacity = Math.random();
+            
+            document.body.appendChild(petal);
+            
+            // एनिमेशन खत्म होने पर हटाएं
+            setTimeout(() => {
+                petal.remove();
+            }, 5000);
+        }
+
+        // क्लिक करने पर फूल गिराएं
+        document.addEventListener('click', () => {
+            for(let i = 0; i < 10; i++) {
+                createPetal();
+            }
+        });
+
+        // 3D परसेप्टिव इफेक्ट
+        document.addEventListener('mousemove', (e) => {
+            const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+            const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+            document.querySelector('.profile-card').style.transform = 
+                `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+        });
+    </script>
+</body>
+</html>
